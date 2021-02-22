@@ -60,7 +60,9 @@ end
 diTP1 = limitTurnAngle(vMat(:,i),diTP1,maxAngle);
 
 %Add noise to turn angle 
-theta = normrnd(0,0.01);    %TODO: Pull from circular-wrapped gaussian
+%NOTE: Using gaussian here, but paper uses circular-wrapped gaussian.
+%Difference should be very small for this angle 
+theta = normrnd(0,0.01);    
 
 noiseRotMat = [cos(theta) -sin(theta);
                sin(theta)  cos(theta)];

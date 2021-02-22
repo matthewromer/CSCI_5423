@@ -4,6 +4,9 @@ function [limitedDir] = limitTurnAngle(currentDir,targetDir,maxAngle)
 %            angle (radians)
 %   Outputs: Updated target direction with turn angle limited 
 %
+%   Notes:   Method of computing angle direction comes from a stack
+%            overflow question: https://stackoverflow.com/q/27681893
+%   
 
 %Compute angle between current angle and origin and target angle and origin
 currAng = atan2(currentDir(2),currentDir(1));

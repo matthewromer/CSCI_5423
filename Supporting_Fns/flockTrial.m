@@ -15,7 +15,7 @@ isLeaderMat(1:numLeaders) = ones(1,numLeaders);
 sMat = repmat(alpha,1,numIndivs);
 
 %Initial conditions
-cMat = normrnd(0,2,2,numIndivs);
+cMat = normrnd(0,2 + numIndivs,2,numIndivs);
 vMat = normrnd(0,0.5,2,numIndivs);
 for i = 1:numIndivs
    vMat(:,i) = vMat(:,i)/norm(vMat(:,i));
@@ -52,7 +52,3 @@ end
 avgVel = (centroidPos(:,numTsteps)-centroidPos(:,numTsteps-50))/50/0.2;
 angularDev = acosd(dot(avgVel,g)/norm(avgVel)/norm(g));
 avgSpeed = norm(avgVel);
-
-if isnan(angularDev)
-    fprint('here')
-end
