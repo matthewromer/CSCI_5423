@@ -1,10 +1,11 @@
-function [angularDev] = flockTrial(numTsteps,omega,alpha,numIndivs,tStep,numLeaders,rho,g)
+function [angularDev,avgSpeed] = flockTrial(numTsteps,omega,alpha,numIndivs,tStep,numLeaders,rho,g)
 %flockTrial runs one trial of the flocking logic and reports the angular
 %deivation at the end of the trial
 %   Inputs:  Number of timesteps, goal vector weight omega, keep-out radius
 %            alpha, number of individuals, timestep, number of leaders,
 %            local attention radius rho, target vector g
-%   Outputs: Angular deviation at the end of the trial (deg)
+%   Outputs: Angular deviation at the end of the trial (deg), average speed
+%            of the group 
 %
 
 %Create vector parameters
@@ -48,8 +49,9 @@ for kk = 1:numTsteps
 
 end
 
-dir = (centroidPos(:,numTsteps)-centroidPos(:,numTsteps-50))/50/0.2;
-angularDev = acosd(dot(dir,g)/norm(dir)/norm(g));
+avgVel = (centroidPos(:,numTsteps)-centroidPos(:,numTsteps-50))/50/0.2;
+angularDev = acosd(dot(avgVel,g)/norm(avgVel)/norm(g));
+avgSpeed = norm(avgVel);
 
 if isnan(angularDev)
     fprint('here')
