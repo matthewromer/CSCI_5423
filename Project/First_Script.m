@@ -21,12 +21,12 @@ Lap = Deg-Gamma;
      
 %Place controller and observer poles
 K = place(A,B,[-1,-2]);
-Lt = place(A',C',[-0.01 -0.02]);
-L = Lt';
-
-
-%Lt = place(A',C',[-0.1 -2]);
+%Lt = place(A',C',[-0.01 -0.02]);
 %L = Lt';
+
+
+Lt = place(A',C',[-0.1 -2]);
+L = Lt';
 
 %Compute eigenvalues of controller and observer individually 
 eig_obs = eig(kron(eye(N),A-L*C))
