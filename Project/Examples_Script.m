@@ -1,4 +1,4 @@
-%Script to test some basic details of model
+%Script to support discussion of model properties
 
 %Define Dynamics
 w = 1;
@@ -20,13 +20,10 @@ Deg   = [1 0;
 Lap = Deg-Gamma;     
      
 %Place controller and observer poles
-K = place(A,B,[-1,-2]);
-%Lt = place(A',C',[-0.01 -0.02]);
-%L = Lt';
+K = place(A,B,[-1,-2])
 
-
-Lt = place(A',C',[-0.1 -2]);
-L = Lt';
+Lt = place(A',C',[-0.01 -0.02]);
+L = Lt'
 
 %Compute eigenvalues of controller and observer individually 
 eig_obs = eig(kron(eye(N),A-L*C))
@@ -45,9 +42,6 @@ V
 
 Kval = 1;
 
-
-
-
 %Define set of leaders
 G = zeros(N,Kval); 
     
@@ -56,14 +50,19 @@ for i = 1:Kval
    G(i,i) = 1;
 end
 
+%System without observers
 Btilde = kron(G,B);
-
 rank(ctrb(kron(eye(N),A)-kron(Lap,B*C),Btilde))
 
-
+%System with observers
 G = [1; 0];
 Btilde = [kron(G,zeros(size(B)));kron(G,B)];
+rank(ctrb(Atilde,Btilde))
 
-
+%System with observers, different L value
+Lt = place(A',C',[-0.1 -2]);
+L = Lt';
+Atilde = [kron(eye(N),A-L*C), kron(Gamma,L*C);
+          kron(eye(N),B*K),kron(eye(n),A)-kron(Deg,B*K)];
 rank(ctrb(Atilde,Btilde))
  
