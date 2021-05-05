@@ -1,0 +1,22 @@
+figure
+subplot(2,2,1)
+plot(T/60,XhighNoise(:,17),T/60,XhighNoise(:,21),T/60,XhighNoise(:,25),T/60,XhighNoise(:,29))
+xlabel('Time (min)')
+ylabel('X Deviation (km)')
+title({'Position with Respect to Reference','Orbit, no Leaders'},'fontsize',14)
+subplot(2,2,3)
+plot(T/60,XhighNoise(:,18),T/60,XhighNoise(:,22),T/60,XhighNoise(:,26),T/60,XhighNoise(:,30))
+xlabel('Time (min)')
+ylabel('Y Deviation (km)')
+legend('Satellite 1','Satellite 2','Satellite 3','Satellite 4','fontsize',12)
+subplot(2,2,2)
+plot(T/60,Xleader(:,17),T/60,Xleader(:,21),T/60,Xleader(:,25),T/60,Xleader(:,29))
+xlabel('Time (min)')
+ylabel('X Deviation (km)')
+title({'Position with Respect to Reference','Orbit, with Leaders'},'fontsize',14)
+subplot(2,2,4)
+plot(T/60,Xleader(:,18),T/60,Xleader(:,22),T/60,Xleader(:,26),T/60,Xleader(:,30))
+xlabel('Time (min)')
+ylabel('Y Deviation (km)')
+
+
