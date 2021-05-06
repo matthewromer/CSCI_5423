@@ -53,11 +53,15 @@ end
 %System without observers
 Btilde = kron(G,B);
 rank(ctrb(kron(eye(N),A)-kron(Lap,B*C),Btilde))
+fprintf('\n')
+fprintf('%.3g & %.3g & %.3g & %.3g \\\\ \n',ctrb(kron(eye(N),A)-kron(Lap,B*C),Btilde)')
 
 %System with observers
 G = [1; 0];
 Btilde = [kron(G,zeros(size(B)));kron(G,B)];
 rank(ctrb(Atilde,Btilde))
+fprintf('\n')
+fprintf('%.3g & %.3g & %.3g & %.3g & %.3g & %.3g & %.3g & %.3g \\\\ \n',ctrb(Atilde,Btilde)')
 
 %System with observers, different L value
 Lt = place(A',C',[-0.1 -2]);
@@ -65,4 +69,5 @@ L = Lt';
 Atilde = [kron(eye(N),A-L*C), kron(Gamma,L*C);
           kron(eye(N),B*K),kron(eye(n),A)-kron(Deg,B*K)];
 rank(ctrb(Atilde,Btilde))
- 
+fprintf('\n')
+fprintf('%.3g & %.3g & %.3g & %.3g & %.3g & %.3g & %.3g & %.3g \\\\ \n',ctrb(Atilde,Btilde)')
