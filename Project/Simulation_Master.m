@@ -49,7 +49,7 @@ Qsingle = [1 1];
 %Get results for bad case
 [XIndep,posIndep] = satelliteSimRun(T,A,B,C,K,L,Gamma,Deg,w,a,Qsingle,'Observer-Based Feedback - Gains Tuned Independently');
  
-%"Bad" observer design- stabilize observer and overall system
+%"Good" observer design- stabilize observer and overall system
 Lt = place(A',C',[-0.2 -0.1 -0.21 -0.11]);             
 L = Lt';
 
@@ -86,7 +86,7 @@ ylabel('Y Deviation (km)')
 saveas(gcf, ['./Results/distToReference'], 'png')
 
 function [X,pos] = satelliteSimRun(T,A,B,C,K,L,Gamma,Deg,w,a,Qsingle,string)
-%satelliteSimRun propagates the satellite dynamics with leaders
+%satelliteSimRun propagates the satellite dynamics without leaders
 %Inputs:  Time vector, (A,B,C) matrices from SS model, controller gain 
 %         matrix K, observer gain matrix L, adjacency matrix, degree matrx,
 %         orbit rate w, semi-major axis a, descriptor string 
@@ -233,7 +233,7 @@ end
 
 function [xdot] = cwOdeLeaders(t,x,noiseHist,timeHist,A,B,C,Gamma,Deg,K,L,K2)
 %cwOdeLeaders contains the equations of motion for a 4-agent
-%Clohessy-Wiltshire equations
+%Clohessy-Wiltshire equations with leaders
 %
 % Inputs:  Time, state vector, noise history vector, time history
 %          corresponding to noise history, (A,B,C) matrices for SS model,
